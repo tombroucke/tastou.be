@@ -1,7 +1,7 @@
 @if ($navigation)
 
   <nav class="navigation-primary">
-    <ul class="d-flex list-unstyled m-0 gap-3">
+    <ul class="d-flex list-unstyled h-100 align-items-center m-0 gap-3">
       @foreach ($navigation as $item)
         <li @class([
             'menu-item',
@@ -32,7 +32,7 @@
   </nav>
 
   <button
-    class="navbar-toggler d-lg-none btn btn-sm p-0 position-absolute"
+    class="navbar-toggler d-lg-none btn btn-sm position-absolute p-0"
     aria-label="{{ __('Toggle navigation', 'sage') }}"
   >
     <div>

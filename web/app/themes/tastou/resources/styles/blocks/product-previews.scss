@@ -1,0 +1,45 @@
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import './../config/variables';
+@import 'bootstrap/scss/variables';
+
+.wp-block-product-previews {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  a {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    min-height: 64px;
+    font-family: $headings-font-family;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 900;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease;
+  }
+
+  &__product {
+    transition: transform 0.15s ease;
+
+    img {
+      transition: transform 0.15s ease;
+    }
+
+    &:hover {
+      transform: rotate(-6deg);
+
+      img {
+        transform: translateY(-50px);
+      }
+
+      a {
+        transform: translate(-50%, 50%);
+      }
+    }
+  }
+}

@@ -6,6 +6,11 @@
         <div class="row">
           @php(dynamic_sidebar('sidebar-footer'))
         </div>
+        <div class="row">
+          <div class="col-md-2">
+            @svg('logo-footer', ['height' => '4em'])
+          </div>
+        </div>
       </div>
     </div>
   </div>

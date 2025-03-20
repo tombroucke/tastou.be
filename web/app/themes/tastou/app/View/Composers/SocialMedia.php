@@ -26,7 +26,8 @@ class SocialMedia extends Composer
         return [
             'channels' => SocialMediaFacade::channels()
                 ->map(function ($channel, $key) {
-                    $channel['icon'] = str_replace('facebook', 'facebook-f', $channel['icon']);
+                    $channel['icon'] = str_replace('facebook', 'facebook-square', $channel['icon']);
+                    $channel['icon'] = str_replace('youtube', 'youtube-square', $channel['icon']);
 
                     return $channel;
                 })

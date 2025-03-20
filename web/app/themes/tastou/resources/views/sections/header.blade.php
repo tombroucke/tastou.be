@@ -1,4 +1,4 @@
-<header class="banner">
+<header class="banner bg-light">
 
   <div class="banner__primary spacing-outer">
     <div class="container--wide container">
@@ -8,7 +8,7 @@
           href="{{ home_url('/') }}"
           aria-label="{{ __('Home', 'sage') }}"
         >
-          @svg('logo', ['height' => '2em'])
+          @svg('logo', ['height' => '4em'])
         </a>
         @includeWhen(has_nav_menu('primary_navigation'), 'partials.navigation-primary')
       </div>

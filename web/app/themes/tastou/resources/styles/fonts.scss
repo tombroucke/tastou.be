@@ -1,0 +1,138 @@
+@font-face {
+  font-display: swap;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/montserrat-v29-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/montserrat-v29-latin-700.woff2') format('woff2');
+}
+
+
+@font-face {
+  font-family: Fester;
+  font-weight: 700;
+  src: url('../fonts/FesterBold/font.woff2') format('woff2'),
+  url('../fonts/FesterBold/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 600;
+  src: url('../fonts/FesterSemiBold/font.woff2') format('woff2'),
+  url('../fonts/FesterSemiBold/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 300;
+  src: url('../fonts/FesterLight/font.woff2') format('woff2'),
+  url('../fonts/FesterLight/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 200;
+  src: url('../fonts/FesterExtraLight/font.woff2') format('woff2'),
+  url('../fonts/FesterExtraLight/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 100;
+  src: url('../fonts/FesterThin/font.woff2') format('woff2'),
+  url('../fonts/FesterThin/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 800;
+  src: url('../fonts/FesterHeavy/font.woff2') format('woff2'),
+  url('../fonts/FesterHeavy/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 400;
+  src: url('../fonts/FesterRegular/font.woff2') format('woff2'),
+  url('../fonts/FesterRegular/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-weight: 500;
+  src: url('../fonts/FesterBook/font.woff2') format('woff2'),
+  url('../fonts/FesterBook/font.woff') format('woff');
+}
+
+/* Italic Variants */
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 600;
+  src: url('../fonts/FesterSemiBoldItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterSemiBoldItalic/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 800;
+  src: url('../fonts/FesterHeavyItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterHeavyItalic/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/FesterBookItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterBookItalic/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 700;
+  src: url('../fonts/FesterBoldItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterBoldItalic/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 200;
+  src: url('../fonts/FesterExtraLightItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterExtraLightItalic/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 100;
+  src: url('../fonts/FesterThinItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterThinItalic/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: Fester;
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/FesterRegularItalic/font.woff2') format('woff2'),
+  url('../fonts/FesterRegularItalic/font.woff') format('woff');
+}
+
+/* Variable Font */
+@font-face {
+  font-family: 'Fester Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('../fonts/FesterVariable/font.woff2') format('woff2'),
+  url('../fonts/FesterVariable/font.woff') format('woff');
+}

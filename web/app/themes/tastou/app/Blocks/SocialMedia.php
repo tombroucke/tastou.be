@@ -78,7 +78,7 @@ class SocialMedia extends Block
      */
     public $supports = [
         'align' => ['wide'],
-        'align_text' => false,
+        'align_text' => true,
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,

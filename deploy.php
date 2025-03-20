@@ -1,7 +1,8 @@
 <?php
+
 namespace Deployer;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 require 'contrib/cachetool.php';
 
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
@@ -11,30 +12,27 @@ require 'vendor/tombroucke/otomaties-deployer/deploy.php';
 
 /** Config */
 set('web_root', 'web');
-set('application', '');
-set('repository', '');
-set('sage/theme_path', get('web_root') . '/app/themes/themename');
+set('application', 'Tastou');
+set('repository', 'git@github.com:tombroucke/tastou.be.git');
+set('sage/theme_path', get('web_root').'/app/themes/tastou');
 set('sage/build_command', 'build --clean --flush'); // build --clean for bud, build:production for mix
 
 /** Hosts */
 host('production')
-    ->set('hostname', 'ssh###.webhosting.be')
-    ->set('url', '')
-    ->set('remote_user', 'examplebe')
+    ->set('hostname', 'ssh103.webhosting.be')
+    ->set('url', 'https://tastou.be')
+    ->set('remote_user', 'tastoube')
     ->set('branch', 'main')
-    ->set('deploy_path', '/data/sites/web/examplebe/app/main');
+    ->set('deploy_path', '/data/sites/web/tastoube/app/main');
 
 host('staging')
-    ->set('hostname', 'ssh###.webhosting.be')
-    ->set('url', '')
+    ->set('hostname', 'ssh103.webhosting.be')
+    ->set('url', 'https://staging.tastou.be')
     ->set('basic_auth_user', $_SERVER['BASIC_AUTH_USER'] ?? '')
     ->set('basic_auth_pass', $_SERVER['BASIC_AUTH_PASS'] ?? '')
-    ->set('remote_user', 'examplebe')
+    ->set('remote_user', 'tastoube')
     ->set('branch', 'staging')
-    ->set('deploy_path', '/data/sites/web/examplebe/app/staging');
-
-/** Notify deploy started */
-before('deploy', 'slack:notify');
+    ->set('deploy_path', '/data/sites/web/tastoube/app/staging');
 
 /** Install theme dependencies */
 after('deploy:vendors', 'sage:vendors');
@@ -66,11 +64,5 @@ after('deploy:symlink', 'wp_rocket:preload_cache');
 /** Remove unused themes */
 after('deploy:cleanup', 'cleanup:unused_themes');
 
-/** Notify success */
-after('deploy:success', 'slack:notify:success');
-
 /** Unlock deploy */
 after('deploy:failed', 'deploy:unlock');
-
-/** Notify failure */
-after('deploy:failed', 'slack:notify:failure');

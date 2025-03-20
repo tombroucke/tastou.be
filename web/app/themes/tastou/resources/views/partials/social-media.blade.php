@@ -1,5 +1,12 @@
+@props([
+    'align' => 'start',
+])
+
 @if ($channels->isNotEmpty())
-  <ul class="social-media d-flex gap-2 list-unstyled">
+  <ul @class([
+      'social-media d-flex list-unstyled',
+      'justify-content-center' => $align === 'center',
+  ])>
     @foreach ($channels as $channel)
       <li>
         <a

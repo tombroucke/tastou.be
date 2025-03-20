@@ -158,11 +158,11 @@ class ImageContent extends Block
             }
         } else {
             if ($imagePosition == 'right') {
-                $span = $align === 'full' ? $columnWidths[0] - 1 : $columnWidths[0] - 2;
+                $span = $align === 'full' ? $columnWidths[0] - 1 : $columnWidths[0] - 1;
                 $start = $hasBackgroundColor || $align === 'full' ? 2 : 1;
             } else {
-                $span = $align === 'full' ? $columnWidths[1] - 1 : $columnWidths[1] - 2;
-                $start = $align === 'full' ? -$span - 2 : -$span - 2;
+                $span = $align === 'full' ? $columnWidths[1] - 1 : $columnWidths[1] - 1;
+                $start = $align === 'full' ? -$span - 2 : -$span - 1;
             }
         }
 

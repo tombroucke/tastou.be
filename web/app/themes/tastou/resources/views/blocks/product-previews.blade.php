@@ -1,9 +1,11 @@
 @unless ($products->isEmpty())
   <x-block :block="$block">
-    <div class="row text-center">
+    <div class="row gx-5 text-center">
       @foreach ($products as $product)
-        <div class="col">
-          <div class="position-relative d-flex flex-column justify-content-between h-100">
+        <div class="col-6 col-lg-3">
+          <div
+            class="wp-block-product-previews__product position-relative d-flex flex-column justify-content-between h-100"
+          >
             <div>
               {!! get_the_post_thumbnail($product->ID, 'product_previwe') !!}
               <a
