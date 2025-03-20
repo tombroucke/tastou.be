@@ -1,0 +1,40 @@
+<?php
+
+namespace Tastou\OptionsPages;
+
+use Tastou\Abstracts\OptionsPage as AbstractsOptionsPage;
+use Tastou\Contracts\OptionsPage;
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
+class {{class_name}} extends AbstractsOptionsPage implements OptionsPage
+{
+
+    protected string $slug = '{{slug}}';
+
+    public function __construct()
+    {
+        $this->title = __('{{name}}', 'tastou');
+        $this->menuTitle = __('{{name}}', 'tastou');
+    }
+
+    protected function fields(FieldsBuilder $fieldsBuilder) : FieldsBuilder
+    {
+        $fieldsBuilder = $this->addItems($fieldsBuilder);
+        return $fieldsBuilder;
+    }
+
+    private function addItems(FieldsBuilder $settings) : FieldsBuilder
+    {
+        $settings
+            ->addRepeater('items', [
+                'label' => __('Items', 'tastou'),
+                'layout' => 'block',
+                'button_label' => __('Add item', 'tastou'),
+            ])
+                ->addText('title', [
+                    'label' => __('Title', 'tastou'),
+                ])
+            ->endRepeater();
+        return $settings;
+    }
+}

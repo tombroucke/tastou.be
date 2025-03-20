@@ -1,0 +1,11 @@
+.btn {
+  text-transform: uppercase;
+
+  &-light {
+    color: var(--wp--preset--color--primary) !important;
+  }
+
+  &-blue {
+    color: var(--wp--preset--color--light) !important;
+  }
+}

@@ -1,0 +1,48 @@
+<?php
+
+namespace Tastou\Taxonomies\{{post_type_class}};
+
+use Tastou\Services\Labels;
+use Tastou\Concerns\HasHooks;
+use Tastou\Contracts\Taxonomy;
+use Tastou\Exceptions\ExtendedCptsNotInstalledException;
+
+class {{class_name}} implements Taxonomy
+{
+    use HasHooks;
+
+    const TAXONOMY = '{{taxonomy}}';
+    const POST_TYPE = '{{post_type}}';
+
+    public function register() : void
+    {
+        if (!function_exists('register_extended_taxonomy')) {
+            throw new ExtendedCptsNotInstalledException();
+        }
+
+        $taxonomySingularName = __('{{singular_label}}', 'tastou');
+        $taxonomyPluralName = __('{{plural_label}}', 'tastou');
+
+        $args = [
+            'meta_box' => 'radio', // can be null, 'simple', 'radio', 'dropdown'
+            'exclusive' => false, // true means: just one can be selected; only for simple
+            'labels' => Labels::taxonomy($taxonomySingularName, $taxonomyPluralName),
+            'admin_cols' => [
+                'updated' => [
+                    'title_cb'    => function () {
+                        return '<em>Last</em> Updated';
+                    },
+                    'meta_key'    => 'updated_date',
+                    'date_format' => 'd/m/Y',
+                ],
+            ],
+        ];
+
+        $names = [
+            'singular' => $taxonomySingularName,
+            'plural' => $taxonomyPluralName,
+        ];
+
+        register_extended_taxonomy(self::TAXONOMY, self::POST_TYPE, $args, $names);
+    }
+}

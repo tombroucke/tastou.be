@@ -1,0 +1,165 @@
+<?php
+
+namespace App\Blocks;
+
+use Log1x\AcfComposer\AcfComposer;
+use Log1x\AcfComposer\Block;
+use Otomaties\AcfObjects\Facades\AcfObjects;
+use StoutLogic\AcfBuilder\FieldsBuilder;
+
+class LatestPosts extends Block
+{
+    /**
+     * The block category.
+     *
+     * @var string
+     */
+    public $category = 'custom';
+
+    /**
+     * The block icon.
+     *
+     * @var string|array
+     */
+    public $icon = 'admin-post';
+
+    /**
+     * The block keywords.
+     *
+     * @var array
+     */
+    public $keywords = [];
+
+    /**
+     * The block post type allow list.
+     *
+     * @var array
+     */
+    public $post_types = [];
+
+    /**
+     * The parent block type allow list.
+     *
+     * @var array
+     */
+    public $parent = [];
+
+    /**
+     * The default block mode.
+     *
+     * @var string
+     */
+    public $mode = 'preview';
+
+    /**
+     * The default block alignment.
+     *
+     * @var string
+     */
+    public $align = 'wide';
+
+    /**
+     * The default block text alignment.
+     *
+     * @var string
+     */
+    public $align_text = '';
+
+    /**
+     * The default block content alignment.
+     *
+     * @var string
+     */
+    public $align_content = '';
+
+    /**
+     * The supported block features.
+     *
+     * @var array
+     */
+    public $supports = [
+        'align' => ['wide'],
+        'align_text' => false,
+        'align_content' => false,
+        'anchor' => false,
+        'mode' => false,
+        'multiple' => true,
+        'jsx' => true,
+    ];
+
+    /**
+     * Set title, description & slug, allow for translation
+     */
+    public function __construct(AcfComposer $composer)
+    {
+        $this->name = __('Latest Posts', 'sage');
+        $this->slug = 'latest-posts';
+        $this->description = __('Display your latest posts', 'sage');
+        parent::__construct($composer);
+    }
+
+    /**
+     * Data to be passed to the block before rendering.
+     *
+     * @return array
+     */
+    public function with()
+    {
+        $postType = AcfObjects::getField('post_type');
+
+        return [
+            'latestPosts' => $this->latestPosts(),
+            'postType' => $postType,
+            'postsPerPage' => AcfObjects::getField('posts_per_page'),
+            'showPagination' => AcfObjects::getField('show_pagination'),
+            'archiveLink' => $postType,
+            'archiveButtonLabel' => AcfObjects::getField('archive_button_label'),
+        ];
+    }
+
+    /**
+     * The block field group.
+     *
+     * @return array
+     */
+    public function fields()
+    {
+        $latestPosts = new FieldsBuilder('latest_posts');
+
+        $latestPosts
+            ->addSelect('post_type', [
+                'label' => __('Post Type', 'sage'),
+                'choices' => [
+                    'recipe' => __('Recipe', 'sage'),
+                    'post' => __('Post', 'sage'),
+                ],
+                'default_value' => 'post',
+            ])
+            ->addNumber('posts_per_page', [
+                'label' => __('Number of posts', 'sage'),
+                'default_value' => 3,
+                'instructions' => __('-1 for all posts', 'sage'),
+            ])
+            ->addTrueFalse('show_pagination', [
+                'label' => __('Show pagination', 'sage'),
+                'default_value' => false,
+            ])
+            ->addText('archive_button_label', [
+                'label' => __('Archive Button Label', 'sage'),
+                'default_value' => __('View all', 'sage'),
+            ]);
+
+        return $latestPosts->build();
+    }
+
+    public function latestPosts()
+    {
+        $args = [
+            'post_type' => (string) AcfObjects::getField('post_type')->default('post'),
+            'posts_per_page' => AcfObjects::getField('posts_per_page')->default('3')->toInt(),
+            'paged' => (get_query_var('paged')) ? get_query_var('paged') : 1,
+        ];
+
+        return new \WP_Query($args);
+    }
+}
