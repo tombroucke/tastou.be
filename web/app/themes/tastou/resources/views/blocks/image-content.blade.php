@@ -1,4 +1,5 @@
 <x-block
+  class="alignwide"
   :block="$block"
   @style(['align-items: ' . $verticalAlign])
 >
@@ -9,6 +10,11 @@
     ])
     @style(['grid-column: ' . $imageGridColumn, 'grid-row: 1'])
   >
+    @if ($label->isSet())
+      <div class="wp-block-image-content__label">
+        {!! $label->image('large') !!}
+      </div>
+    @endif
     {!! $image->attributes([
             'class' => collect($imageClasses)->merge(['w-100'])->join(' '),
         ])->image('large') !!}

@@ -47,6 +47,16 @@ wp.domReady(() => {
     name: 'lead',
     label: 'Lead',
   });
+
+  registerBlockStyle('core/group', {
+    name: 'curved-big',
+    label: 'Curved Big',
+  });
+
+  registerBlockStyle('core/group', {
+    name: 'curved-small',
+    label: 'Curved Small',
+  });
 });
 
 /**

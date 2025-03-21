@@ -98,7 +98,7 @@ class ImageContent extends Block
      * @var array
      */
     public $supports = [
-        'align' => ['wide', 'full'],
+        'align' => false,
         'align_text' => false,
         'align_content' => true,
         'full_height' => false,
@@ -118,11 +118,9 @@ class ImageContent extends Block
     {
         $settings = AcfObjects::getField('settings')
             ->default([
-                'ratio' => '6:6',
                 'image_position' => 'left',
                 'stretch_image' => 'false',
             ]);
-        $ratio = $settings->get('ratio');
         $imagePosition = $settings->get('image_position');
 
         $verticalAlign = match ($this->block->alignContent ?? 'top') {
@@ -132,60 +130,14 @@ class ImageContent extends Block
             default => 'start',
         };
 
-        $hasBackgroundColor = isset($this->block->backgroundColor);
-
         return [
             'verticalAlign' => $verticalAlign,
             'image' => AcfObjects::getField('image'),
-            'imageGridColumn' => $this->gridColumn(true, $ratio, $imagePosition, $this->block->align, $hasBackgroundColor),
-            'contentGridColumn' => $this->gridColumn(false, $ratio, $imagePosition, $this->block->align, $hasBackgroundColor),
+            'imageGridColumn' => $imagePosition == 'left' ? '2 / span 5' : '7 / span 5',
+            'contentGridColumn' => $imagePosition == 'left' ? '7 / span 5' : '2 / span 5',
             'imageClasses' => $settings->get('stretch_image') ? ['h-100', 'object-fit-cover'] : [],
             'stretchImage' => $settings->get('stretch_image'),
-        ];
-    }
-
-    private function gridColumn($isImage, $ratio, $imagePosition = 'left', $align = 'none', $hasBackgroundColor = false)
-    {
-        $columnWidths = explode(':', $ratio);
-
-        if ($isImage) {
-            if ($imagePosition == 'left') {
-                $span = $align === 'full' ? $columnWidths[0] + 1 : $columnWidths[0];
-                $start = 1;
-            } else {
-                $span = $align === 'full' ? $columnWidths[1] + 1 : $columnWidths[1];
-                $start = -$span - 1;
-            }
-        } else {
-            if ($imagePosition == 'right') {
-                $span = $align === 'full' ? $columnWidths[0] - 1 : $columnWidths[0] - 1;
-                $start = $hasBackgroundColor || $align === 'full' ? 2 : 1;
-            } else {
-                $span = $align === 'full' ? $columnWidths[1] - 1 : $columnWidths[1] - 1;
-                $start = $align === 'full' ? -$span - 2 : -$span - 1;
-            }
-        }
-
-        return $start.' / span '.$span;
-    }
-
-    private function columnPossibilities()
-    {
-        return [
-            '4:8',
-            '4:7',
-            '4:6',
-            '4:5',
-            '5:7',
-            '5:6',
-            '5:5',
-            '6:6',
-            '6:5',
-            '7:5',
-            '5:4',
-            '6:4',
-            '7:4',
-            '8:4',
+            'label' => $settings->get('label'),
         ];
     }
 
@@ -207,6 +159,10 @@ class ImageContent extends Block
                 'label' => __('Settings', 'sage'),
                 'layout' => 'block',
             ])
+            ->addImage('label', [
+                'label' => __('Label', 'sage'),
+                'instructions' => __('Optional label for this block', 'sage'),
+            ])
             ->addSelect('image_position', [
                 'label' => __('Image Position', 'sage'),
                 'allow_null' => true,
@@ -214,13 +170,6 @@ class ImageContent extends Block
                     'left' => __('Left', 'sage'),
                     'right' => __('Right', 'sage'),
                 ],
-            ])
-            ->addSelect('ratio', [
-                'label' => __('Ratio', 'sage'),
-                'allow_null' => true,
-                'choices' => $this->columnPossibilities(),
-                'default_value' => '6:6',
-                'instructions' => __('The ratio of the image and the content. There are a total of 12 columns.', 'sage'),
             ])
             ->addTrueFalse('stretch_image', [
                 'label' => __('Stretch Image', 'sage'),

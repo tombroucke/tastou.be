@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center">
   <nav class="navigation-credits">
-    <ul class="d-flex list-unstyled m-0 gap-3">
+    <ul class="d-flex list-unstyled m-0 flex-wrap gap-3">
 
       @if ($navigation)
         @foreach ($navigation as $item)

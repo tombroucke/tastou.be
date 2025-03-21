@@ -4,6 +4,9 @@
   top: 0;
   right: 0;
   left: 0;
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
+  font-size: 0.9rem;
 
   a {
     color: $black;
@@ -18,22 +21,166 @@
     }
   }
 
-  .brand svg {
-    transition: all 0.3s ease;
+  .brand {
+    svg {
+      transition: all 0.3s ease;
+    }
   }
 
   .navigation-primary {
-    height: var(--banner-height);
     transition: all 0.3s ease;
   }
 
   &--not-top {
-    .navigation-primary {
-      height: 75px;
-    }
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 0 15px rgb(87 119 66 / 20%);
 
     .brand svg {
       height: 2em;
     }
+  }
+
+  .primary-nav-open & {
+    box-shadow: 0 0 15px rgb(87 119 66 / 20%);
+  }
+}
+
+.language-switcher {
+  span,
+  a {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.15s ease;
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      content: '';
+      transform: scale(0.1);
+      transition: all 0.15s ease;
+    }
+  }
+
+  a:hover {
+    color: var(--wp--preset--color--light);
+
+    &::before {
+      background-color: var(--wp--preset--color--primary);
+      transform: scale(1);
+    }
+  }
+
+  span {
+    color: var(--wp--preset--color--light);
+
+    &::before {
+      background-color: var(--wp--preset--color--primary);
+      font-weight: 700;
+      transform: scale(1);
+    }
+  }
+}
+
+.navbar-toggler div {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  transform: rotate(0deg);
+
+  span {
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--wp--preset--color--primary);
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 12px;
+    }
+
+    &:nth-child(4) {
+      top: 24px;
+    }
+  }
+
+  .primary-nav-open & {
+    span {
+      &:nth-child(1) {
+        top: 12px;
+        left: 50%;
+        width: 0%;
+      }
+
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      &:nth-child(4) {
+        top: 12px;
+        left: 50%;
+        width: 0%;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-down(lg) {
+  .navigation-primary {
+    overflow: hidden;
+    max-height: 0;
+    flex: 0 0 100%;
+
+    ul:not(.language-switcher) {
+      a {
+        color: var(--wp--preset--color--primary);
+        font-family: $headings-font-family;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+    }
+
+    > div {
+      padding-top: 3rem;
+      padding-bottom: 1rem;
+    }
+
+    .primary-nav-open & {
+      max-height: calc(100vh - var(--banner-height));
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .brand svg {
+    height: 3rem;
   }
 }

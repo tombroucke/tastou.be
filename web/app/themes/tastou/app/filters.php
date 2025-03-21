@@ -37,6 +37,15 @@ add_filter('render_block', function ($blockContent, $block) {
         $blockContent = str_replace('<table>', '<table class="table">', $blockContent);
     }
 
+    // Bootstrap tables
+    if ($blockName == 'core/group') {
+        app()->make('blockIndex')->decrease();
+        $zIndex = app()->make('blockIndex')->get();
+        // add z index to block
+        $blockContent = str_replace('<div class="wp-block-group', '<div style="z-index: '.$zIndex.';" class="wp-block-group', $blockContent);
+
+    }
+
     // Add fancybox to gallery
     if ($blockName == 'core/image') {
         preg_match('/href="(.*?)"/', $blockContent, $matches);

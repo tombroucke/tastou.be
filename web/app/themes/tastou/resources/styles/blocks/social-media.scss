@@ -1,3 +1,8 @@
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/functions';
+@import './../config/variables';
+@import 'bootstrap/scss/variables';
+
 .wp-block-social-media {
   .main & {
     svg {
@@ -7,6 +12,28 @@
 
     .social-media {
       gap: 3rem;
+    }
+
+    @include media-breakpoint-down(lg) {
+      svg {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .social-media {
+        gap: 2rem;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .social-media {
+        gap: 1.5rem;
+      }
     }
   }
 }

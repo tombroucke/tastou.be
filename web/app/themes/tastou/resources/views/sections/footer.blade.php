@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="content-info__credits bg-light py-2">
+  <div class="content-info__credits bg-light py-3">
     <div class="spacing-outer">
       @includeWhen(has_nav_menu('credits_navigation'), 'partials.navigation-credits')
     </div>

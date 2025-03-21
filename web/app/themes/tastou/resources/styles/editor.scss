@@ -51,4 +51,10 @@
     padding: 0;
     margin-top: 0;
   }
+
+  .wp-block-group.is-style-curved-big+div,
+  .wp-block-group.is-style-curved-small+div {
+    padding-top: 0;
+    margin-top: 0;
+  }
 }

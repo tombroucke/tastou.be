@@ -38,6 +38,10 @@ class ThemeServiceProvider extends SageServiceProvider
             return new \App\Helpers\ThemeJson;
         });
 
+        $this->app->singleton('blockIndex', function () {
+            return new \App\Helpers\BlockIndex;
+        });
+
         parent::register();
     }
 
