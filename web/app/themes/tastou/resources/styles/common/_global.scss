@@ -26,16 +26,9 @@ h2 {
 }
 
 h2 {
-  max-width: 700px !important;
   margin-bottom: 2rem;
   color: var(--wp--preset--color--primary);
   font-weight: 400;
-
-  &.has-text-align-center {
-    margin-right: auto;
-    margin-left: auto;
-  }
-
   @include media-breakpoint-down(md) {
     margin-bottom: 1.2rem;
   }

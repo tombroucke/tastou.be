@@ -10,14 +10,14 @@
     ])
     @style(['grid-column: ' . $imageGridColumn, 'grid-row: 1'])
   >
-    @if ($label->isSet())
+    @if ($label && $label->isSet())
       <div class="wp-block-image-content__label">
-        {!! $label->image('large') !!}
+        {!! $label->image('medium') !!}
       </div>
     @endif
     {!! $image->attributes([
             'class' => collect($imageClasses)->merge(['w-100'])->join(' '),
-        ])->image('large') !!}
+        ])->image('medium') !!}
   </div>
   <div
     class="wp-block-image-content__content"

@@ -6,6 +6,7 @@
 .wp-block-product-previews {
   padding-top: 50px;
 
+  h3,
   a {
     position: absolute;
     z-index: -1;
@@ -40,6 +41,7 @@
         transform: translateY(-50px);
       }
 
+      h3,
       a {
         transform: translate(-50%, -10%);
       }

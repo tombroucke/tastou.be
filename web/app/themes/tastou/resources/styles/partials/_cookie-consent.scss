@@ -5,18 +5,30 @@
   --cc-text: #{$dark};
   --cc-font-family: #{$font-family-sans-serif};
   --cc-btn-primary-bg: #{$primary};
-  --cc-btn-primary-text: #{$white};
+  --cc-btn-primary-text: #{$light};
   --cc-btn-primary-hover-bg: #{$primary};
+  --cc-btn-primary-border-color: #{$primary};
+  --cc-btn-primary-hover-border-color: #{$primary};
   --cc-block-text: #{$dark};
   --cc-btn-secondary-bg: #{$light};
   --cc-btn-secondary-hover-bg: #{$light};
   --cc-btn-secondary-text: #{$primary};
-  --cc-cookie-category-block-bg: #{$white};
+  --cc-btn-secondary-border-color: #{$light};
+  --cc-btn-secondary-hover-border-color: #{$light};
+  --cc-cookie-category-block-bg: #{$light};
   --cc-btn-border-radius: #{$btn-border-radius};
   --cc-toggle-on-bg: #{$green};
 
   .pm__btn,
   .cm__btn {
-    font-weight: 400;
+    min-width: 2em !important;
+    padding: $btn-padding-y $btn-padding-x $btn-padding-y $btn-padding-x;
+    padding-top: 1rem;
+    border-radius: $btn-border-radius;
+    font-family: $btn-font-family;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: normal;
+    text-transform: uppercase;
   }
 }

@@ -8,11 +8,15 @@
           >
             <div>
               {!! get_the_post_thumbnail($product->ID, 'product_preview') !!}
-              <a
-                class="stretched-link"
-                @style(['color: ' . get_field('color', $product->ID) . ';' => get_field('color', $product->ID)])
-                href="{{ get_permalink($product) }}"
-              >{!! $product->post_title !!}</a>
+              @if (false)
+                <a
+                  class="stretched-link"
+                  @style(['color: ' . get_field('color', $product->ID) . ';' => get_field('color', $product->ID)])
+                  href="{{ get_permalink($product) }}"
+                >{!! $product->post_title !!}</a>
+              @else
+                <h3 @style(['color: ' . get_field('color', $product->ID) . ';' => get_field('color', $product->ID)])>{!! $product->post_title !!}</h3>
+              @endif
               @if ($extendedPreviews)
                 {!! wpautop(get_field('short_description', $product->ID)) !!}
               @endif
